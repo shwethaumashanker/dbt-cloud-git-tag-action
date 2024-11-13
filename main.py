@@ -50,6 +50,9 @@ if __name__ == "__main__":
     # Remove credentials
     environment["credentials"] = None
 
+     # Remove project details
+    environment["project"] = None
+
     # Log the env
     logger.info(f"env: {environment}")
     
