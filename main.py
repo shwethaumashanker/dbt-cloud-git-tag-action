@@ -37,13 +37,19 @@ if __name__ == "__main__":
     tag = GITHUB_REF.split("/")[-1]
     path = f"api/v3/accounts/{ACCOUNT_ID}/projects/{PROJECT_ID}/environments/{ENV_ID}/"
 
+    # Log the extracted tag
+    logger.info(f"Using tag: {tag}")
+
     # Retrieve the environment to update
     environment = make_request(path)["data"]
 
     # Update the environment with the custom branch
     environment["custom_branch"] = tag
-    environment["use_custom_branch"] = true
+    environment["use_custom_branch"] = True
 
+    # Log the env
+    logger.info(f"env: {env}")
+    
     # Update the environment
     response = make_request(path, method="POST", json=environment)
 
