@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # Update the environment with the custom branch
     environment["custom_branch"] = tag
-    environment["use_custom_branch"] = True
+    environment["use_custom_branch"] = true
 
     # Update the environment
     response = make_request(path, method="POST", json=environment)
