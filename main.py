@@ -48,10 +48,16 @@ if __name__ == "__main__":
     environment["use_custom_branch"] = True
 
     # Log the env
-    logger.info(f"env: {env}")
+    logger.info(f"env: {environment}")
     
     # Update the environment
-    response = make_request(path, method="POST", json=environment)
+    try:
+        response = make_request(path, method="POST", json=environment)
+    except requests.exceptions.HTTPError as e:
+        logger.error(f"HTTP error occurred: {e}")
+        logger.error(f"Response content: {e.response.content}")
+        sys.exit(1)
+
 
     if response["status"]["code"] == 200:
         sys.exit(0)
